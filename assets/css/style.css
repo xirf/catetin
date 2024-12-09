@@ -1,0 +1,166 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    background-color: #f5f5f5;
+    background-image:  radial-gradient(#c4c4c47c 1px, #f5f5f5 0);
+    background-size: 16px 16px;
+}
+
+
+aside{
+    height: 100vh;
+    background-color: #fff;
+    top: 0;
+    left: 0;
+    border-right: 1px solid #c4c4c47c;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 64px;
+    align-items: center;
+    justify-content: start;
+}
+
+.main{
+    display: flex;
+}
+
+main{
+    flex: 1;
+    padding: 32px;
+}
+
+.relative{
+    position: relative;
+}
+
+.brand-name{
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+.btn-primary{
+    background-color: black;
+    color: white;
+    border-radius: 100px;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown{
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    border-radius: 8px;
+    padding: 8px;
+    display: flex;
+    gap: 16px;
+    flex-direction: column;
+    z-index: 1;
+}
+
+.hide{
+    display: none;
+}
+
+.btn-small{
+    background-color: var(--color, #333);
+    border-radius: 100px;
+    width: 32px;
+    height: 32px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(calc(var(--index) * -40px));
+    transition: all 500ms cubic-bezier(0.000, 1.475, 0.385, 0.920);;
+    transform-origin: top center;
+    transition-delay: calc(var(--index) * 100ms);
+}
+
+#btn:checked ~ .dropdown .btn-small{
+    opacity: 1;
+    transform: translateY(0);
+}
+
+dialog{
+    border-radius: 16px;
+    background-color: var(--color, #fff);
+    padding: 32px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    border: 1px solid #c4c4c47c;
+    position: relative;
+}
+
+form.form-todo{
+    display: flex;
+    gap: 16px;
+    flex-direction: column;
+}
+
+.form-todo textarea{
+    border: none;
+    outline: none;
+    width: 100%;
+    min-height: 300px;
+    resize: none;
+    background-color: transparent;
+}
+
+.form-todo button[type="submit"]{
+    background-color: black;
+    color: white;
+    border: none;
+    outline: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.close{
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    cursor: pointer;
+    width: 28px;
+    height: 28px;
+    background: transparent;
+    border: none;
+    outline: none;
+}
+
+.container{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.card{
+    background-color: var(--color, #fff);
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 16px;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
