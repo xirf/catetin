@@ -33,6 +33,8 @@ aside{
 main{
     flex: 1;
     padding: 32px;
+    height: 100vh;
+    overflow-y: auto;
 }
 
 .relative{
@@ -160,7 +162,69 @@ form.form-todo{
     margin-bottom: 16px;
     display: flex;
     gap: 16px;
-    align-items: center;
-    justify-content: space-between;
+    height: 400px;
     position: relative;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 300ms ease-in-out;
+    cursor: pointer;
+}
+
+.card:not(.nolimit):hover{
+    transform: translateY(-8px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.card #todo{
+    overflow: hidden;
+    display: block;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    height: fit-content;
+    text-wrap: wrap;
+    white-space: pre-wrap;
+    word-break: break-word;
+    height: 300px;
+}
+
+.card.nolimit{
+    height: fit-content;
+    cursor: default;
+    min-width: 300px;
+    height: auto;
+    max-height: 100vh;
+    overflow-y: auto;
+}
+
+.card.nolimit #todo{
+    height: auto;
+}
+
+.card span{
+    font-size: 12px;
+    color: #333;
+}
+
+.flex-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.space-between{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.flex{
+    display: flex;
+}
+
+.gap-2{
+    gap: 8px;
+}
+
+.red{
+    background-color: red;
 }
