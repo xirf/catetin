@@ -1,4 +1,14 @@
-<?php include 'koneksi.php'; ?>
+<?php
+session_start();
+
+if (!isset($_SESSION['login'])) {
+    header('Location: login.php');
+    exit;
+}
+
+include 'koneksi.php';
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,18 +22,25 @@
     <div class="main">
         <aside>
             <h1 class="brand-name">Catetin</h1>
-            <div class="relative">
-                <input type="checkbox" id="btn" class="hide">
-                <label class="btn-primary" for="btn">
-                    <i class="fas fa-plus"></i>
-                </label>
-                <div class="dropdown">
-                    <button class="btn-small" value="#fec971" style="--color: #fec971; --index: 0;"></button>
-                    <button class="btn-small" value="#fe9b72" style="--color: #fe9b72; --index: 1;"></button>
-                    <button class="btn-small" value="#b693fd" style="--color: #b693fd; --index: 2;"></button>
-                    <button class="btn-small" value="#00d4fe" style="--color: #00d4fe; --index: 3;"></button>
-                    <button class="btn-small" value="#e4ef8f" style="--color: #e4ef8f; --index: 4;"></button>
+            <div class="grow">
+                <div class="relative">
+                    <input type="checkbox" id="btn" class="hide">
+                    <label class="btn-primary" for="btn">
+                        <i class="fas fa-plus"></i>
+                    </label>
+                    <div class="dropdown">
+                        <button class="btn-small" value="#fec971" style="--color: #fec971; --index: 0;"></button>
+                        <button class="btn-small" value="#fe9b72" style="--color: #fe9b72; --index: 1;"></button>
+                        <button class="btn-small" value="#b693fd" style="--color: #b693fd; --index: 2;"></button>
+                        <button class="btn-small" value="#00d4fe" style="--color: #00d4fe; --index: 3;"></button>
+                        <button class="btn-small" value="#e4ef8f" style="--color: #e4ef8f; --index: 4;"></button>
+                    </div>
                 </div>
+            </div>
+            <div>
+                <a href="logout.php">
+                    <i class="fas fa-sign-out-alt"></i>
+                </a>
             </div>
         </aside>
 
@@ -31,7 +48,8 @@
         <main>
             <div class="container">
                 <?php
-                $sql = "SELECT * FROM tb_todo ORDER BY created_at DESC";
+                $sql = "SELECT * FROM tb_todo WHERE created_by = '" . $_SESSION['login'] . "' ORDER BY created_at DESC";
+
                 $result = mysqli_query($conn, $sql);
 
                 if (mysqli_num_rows($result) > 0) {
